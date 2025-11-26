@@ -32,11 +32,11 @@ import { DeluxeGuard } from '../app.guard'
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 class MockSocket {
-  on (str: string, callback: any) {
+  on(str: string, callback: any) {
     callback(str)
   }
 
-  emit () {
+  emit() {
     return null
   }
 }
@@ -44,7 +44,7 @@ class MockSocket {
 class MockActivatedRoute {
   snapshot = { queryParams: { q: '' } }
 
-  setQueryParameter (arg: string) {
+  setQueryParameter(arg: string) {
     this.snapshot.queryParams.q = arg
   }
 }
@@ -185,10 +185,10 @@ describe('SearchResultComponent', () => {
     expect(component.dataSource.filter).toEqual('product search')
   })
 
-  it('should pass the search query as trusted HTML', () => {
+  it('should pass the search query as string', () => {
     activatedRoute.setQueryParameter('<script>scripttag</script>')
     component.filterTable()
-    expect(sanitizer.bypassSecurityTrustHtml).toHaveBeenCalledWith('<script>scripttag</script>')
+    expect(component.searchValue).toBe('<script>scripttag</script>')
   })
 
   it('should open a modal dialog with product details', () => {
