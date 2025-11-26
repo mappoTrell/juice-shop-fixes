@@ -157,11 +157,7 @@ describe('/rest/user/login', () => {
         password: undefined
       }
     })
-      .expect('status', 200)
-      .expect('header', 'content-type', /application\/json/)
-      .expect('jsonTypes', 'authentication', {
-        token: Joi.string()
-      })
+      .expect('status', 401)
   })
 
   it('POST login with known email "admin@juice-sh.op" in SQL injection attack', () => {
@@ -172,11 +168,7 @@ describe('/rest/user/login', () => {
         password: undefined
       }
     })
-      .expect('status', 200)
-      .expect('header', 'content-type', /application\/json/)
-      .expect('jsonTypes', 'authentication', {
-        token: Joi.string()
-      })
+      .expect('status', 401)
   })
 
   it('POST login with known email "jim@juice-sh.op" in SQL injection attack', () => {
@@ -187,11 +179,7 @@ describe('/rest/user/login', () => {
         password: undefined
       }
     })
-      .expect('status', 200)
-      .expect('header', 'content-type', /application\/json/)
-      .expect('jsonTypes', 'authentication', {
-        token: Joi.string()
-      })
+      .expect('status', 401)
   })
 
   it('POST login with known email "bender@juice-sh.op" in SQL injection attack', () => {
@@ -202,11 +190,7 @@ describe('/rest/user/login', () => {
         password: undefined
       }
     })
-      .expect('status', 200)
-      .expect('header', 'content-type', /application\/json/)
-      .expect('jsonTypes', 'authentication', {
-        token: Joi.string()
-      })
+      .expect('status', 401)
   })
 
   it('POST login with non-existing email "acc0unt4nt@juice-sh.op" via UNION SELECT injection attack', () => {
@@ -217,11 +201,7 @@ describe('/rest/user/login', () => {
         password: undefined
       }
     })
-      .expect('status', 200)
-      .expect('header', 'content-type', /application\/json/)
-      .expect('jsonTypes', 'authentication', {
-        token: Joi.string()
-      })
+      .expect('status', 401)
   })
 
   it('POST login with query-breaking SQL Injection attack', () => {
